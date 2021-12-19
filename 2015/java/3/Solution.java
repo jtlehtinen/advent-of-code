@@ -1,7 +1,6 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
-import java.util.HashMap;
 
 /**
  * Problem statement: https://adventofcode.com/2015/day/3
