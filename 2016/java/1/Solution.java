@@ -31,7 +31,8 @@ public class Solution {
     int x = 0;
     int y = 0;
     int dir = 0; // NORTH, EAST, SOUTH, WEST = 0, 1, 2, 3
-    var step = new int[]{1, 0, -1, 0};
+    var stepx = new int[]{1, 0, -1, 0};
+    var stepy = new int[]{0, 1, 0, -1};
 
     var visited = new HashSet<Location>();
     visited.add(new Location(x, y));
@@ -43,8 +44,8 @@ public class Solution {
       dir = (dir + rot + 4) % 4;
 
       for (int i = 0; i < count; ++i) {
-        x += step[(dir + 1) % 4];
-        y += step[dir];
+        x += stepx[dir];
+        y += stepy[dir];
         var location = new Location(x, y);
         if (visited.contains(location)) return Math.abs(x) + Math.abs(y);
         visited.add(location);
