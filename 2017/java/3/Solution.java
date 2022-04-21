@@ -22,7 +22,7 @@ public class Solution {
       this.y = cy;
     }
 
-    private void step() {
+    private void stepOnce() {
       // Steps into given direction seems to have the
       // following pattern:
       // 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, ...
@@ -44,37 +44,37 @@ public class Solution {
       }
     }
 
-    public Coords stepOnce() {
-      step();
+    public Coords step() {
+      stepOnce();
       return new Coords(x, y);
     }
 
     public Coords stepMany(int count) {
       for (int i = 0; i < count; ++i) {
-        step();
+        stepOnce();
       }
       return new Coords(x, y);
     }
-  }
 
-  /**
-   * sequence produces the sequence 1, 0, -1, 0, 1, ...
-   * for n = {0, 1, 2, 3, ...}.
-   */
-  private static int sequence(int n) {
-    return Math.abs((n % 4) - 2) - 1;
-  }
+    /**
+     * sequence produces the sequence 1, 0, -1, 0, 1, ...
+     * for n = {0, 1, 2, 3, ...}.
+     */
+    private static int sequence(int n) {
+      return Math.abs((n % 4) - 2) - 1;
+    }
 
-  private static int dxForFacing(int facing) {
-    return sequence(facing);
-  }
+    private static int dxForFacing(int facing) {
+      return sequence(facing);
+    }
 
-  private static int dyForFacing(int facing) {
-    return sequence(facing + 1);
-  }
+    private static int dyForFacing(int facing) {
+      return sequence(facing + 1);
+    }
 
-  private static int rotate(int facing) {
-    return (facing + 1) % 4;
+    private static int rotate(int facing) {
+      return (facing + 1) % 4;
+    }
   }
 
   private static int solvePart1(int in) {
@@ -97,7 +97,7 @@ public class Solution {
     var walker = new Walker(cx, cy);
 
     for (;;) {
-      var coords = walker.stepOnce();
+      var coords = walker.step();
       if (coords.x < 0 || coords.x >= dim || coords.y < 0 || coords.y >= dim) {
         throw new IllegalArgumentException("input is too big");
       }
