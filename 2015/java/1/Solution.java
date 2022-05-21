@@ -6,12 +6,11 @@ import java.nio.file.Path;
  */
 public class Solution {
   private static int solvePart1(String in) {
-    int floor = 0;
-    for (char c : in.toCharArray()) {
-      if (c == '(') floor++;
-      else if (c == ')') floor--;
-    }
-    return floor;
+    return in.chars().reduce(0, (prev, curr) -> {
+      if (curr == '(') return prev + 1;
+      if (curr == ')') return prev - 1;
+      return prev;
+    });
   }
 
   private static int solvePart2(String in) {
