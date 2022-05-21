@@ -22,7 +22,7 @@ public class Solution {
         return code[0];
 
       if (pc + 3 >= code.length)
-        throw new IllegalArgumentException("invalid instruction stream " + length);
+        throw new IllegalArgumentException("invalid instruction stream " + code.length);
 
       if (opcode == OPCODE_ADD) {
         code[code[pc+3]] = code[code[pc+1]] + code[code[pc+2]];
@@ -40,8 +40,6 @@ public class Solution {
   }
 
   private static int solvePart2(int[] code) {
-    code = Arrays.copyOf(code, code.length);
-
     for (var noun = 0; noun < 100; ++noun) {
       for (var verb = 0; verb < 100; ++verb) {
         try {
